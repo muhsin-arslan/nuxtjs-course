@@ -3,14 +3,20 @@
     <section class="intro">
       <h1>Get the latest tech news!</h1>
     </section>
-    <PostList />
+    <PostList :posts="loadedPosts" />
   </div>
 </template>
 
 <script>
 import PostList from "@/components/posts/PostList.vue";
+
 export default {
   components: { PostList },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts;
+    },
+  },
 };
 </script>
 

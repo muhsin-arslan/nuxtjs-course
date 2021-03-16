@@ -12,5 +12,8 @@
     "core-js": "^3.8.3",
     "nuxt": "^2.14.12"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxt/types": "^2.15.3",
+    "prettier": "1.19.1"
+  }
 }

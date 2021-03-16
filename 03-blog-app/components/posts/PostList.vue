@@ -1,25 +1,13 @@
 <template>
   <section class="post-list">
     <PostPreview
-      id="1"
+      v-for="post in posts"
+      :key="post.id"
       :is-admin="isAdmin"
-      title="Blog Post 01"
-      previewText="This is preview text..."
-      thumbnail="https://images.unsplash.com/photo-1612831200091-c08595b18e6b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80"
-    />
-    <PostPreview
-      id="2"
-      :is-admin="isAdmin"
-      title="Blog Post 02"
-      previewText="This is preview text..."
-      thumbnail="https://images.unsplash.com/photo-1615628362327-5f35b8adca5e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-    />
-    <PostPreview
-      id="3"
-      :is-admin="isAdmin"
-      title="Blog Post 03"
-      previewText="This is preview text..."
-      thumbnail="https://images.unsplash.com/photo-1615561916422-7014e1078997?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+      :id="post.id"
+      :title="post.title"
+      :previewText="post.previewText"
+      :thumbnail="post.thumbnail"
     />
   </section>
 </template>
@@ -34,6 +22,10 @@ export default {
     isAdmin: {
       type: Boolean,
       default: false,
+    },
+    posts: {
+      type: Array,
+      required: true,
     },
   },
 };

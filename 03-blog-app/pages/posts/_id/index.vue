@@ -1,12 +1,14 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="post-title">Title of The Post</h1>
+      <h1 class="post-title">{{ loadedPost.title }}</h1>
       <div class="post-details">
-        <div class="post-detail">Last updated on XXX</div>
-        <div class="post-detail">Written by XXX</div>
+        <div class="post-detail">
+          Last updated on {{ loadedPost.lastUpdatedDate }}
+        </div>
+        <div class="post-detail">Written by {{ loadedPost.author }}</div>
       </div>
-      <p>Content of the post...</p>
+      <p>{{ loadedPost.content }}</p>
     </section>
     <section class="post-feedback">
       <p>
@@ -16,6 +18,25 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  async asyncData(context) {
+    await new Promise((resolve) => setTimeout(resolve, 800)); // Simulate fetch from API.
+
+    // Simulate returned response
+    return {
+      loadedPost: {
+        id: context.params.id,
+        title: `Title of Blog Post (ID: ${context.params.id})`,
+        lastUpdatedDate: "01.01.2021",
+        author: "Muhsin",
+        content: "Lorem ipsum is the best content text.",
+      },
+    };
+  },
+};
+</script>
 
 <style scoped>
 .single-post-page {
