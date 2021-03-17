@@ -1,7 +1,7 @@
 <template>
   <div class="admin-new-post-page">
     <section class="new-post-form">
-      <AdminPostForm />
+      <AdminPostForm @submit="onSubmitted" />
     </section>
   </div>
 </template>
@@ -13,6 +13,11 @@ export default {
   layout: "admin",
   components: {
     AdminPostForm,
+  },
+  methods: {
+    onSubmitted(formData) {
+      this.$store.dispatch("createPost", formData);
+    },
   },
 };
 </script>

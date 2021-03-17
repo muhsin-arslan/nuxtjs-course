@@ -3,9 +3,7 @@
     <section class="post">
       <h1 class="post-title">{{ loadedPost.title }}</h1>
       <div class="post-details">
-        <div class="post-detail">
-          Last updated on {{ loadedPost.lastUpdatedDate }}
-        </div>
+        <div class="post-detail">Last updated on XX</div>
         <div class="post-detail">Written by {{ loadedPost.author }}</div>
       </div>
       <p>{{ loadedPost.content }}</p>
@@ -21,19 +19,13 @@
 
 <script>
 export default {
-  async asyncData(context) {
-    await new Promise((resolve) => setTimeout(resolve, 800)); // Simulate fetch from API.
-
-    // Simulate returned response
-    return {
-      loadedPost: {
-        id: context.params.id,
-        title: `Title of Blog Post (ID: ${context.params.id})`,
-        lastUpdatedDate: "01.01.2021",
-        author: "Muhsin",
-        content: "Lorem ipsum is the best content text.",
-      },
-    };
+  asyncData(context) {
+    context.store.dispatch("setPost", context.params.id);
+  },
+  computed: {
+    loadedPost() {
+      return this.$store.getters.loadedPost;
+    },
   },
 };
 </script>
