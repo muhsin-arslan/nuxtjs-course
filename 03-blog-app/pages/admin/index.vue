@@ -7,7 +7,7 @@
     </section>
     <section class="existing-posts">
       <h1>Existing Posts</h1>
-      <PostList isAdmin />
+      <PostList :posts="loadedPosts" isAdmin />
     </section>
   </div>
 </template>
@@ -18,9 +18,15 @@ import AppButton from "@/components/ui/AppButton.vue";
 
 export default {
   layout: "admin",
+  middleware: ["check-auth", "auth"],
   components: {
     PostList,
     AppButton,
+  },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts;
+    },
   },
 };
 </script>

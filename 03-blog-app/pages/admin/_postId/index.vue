@@ -10,6 +10,7 @@
 import AdminPostForm from "@/components/admin/AdminPostForm.vue";
 export default {
   layout: "admin",
+  middleware: ["check-auth", "auth"],
   components: { AdminPostForm },
   data() {
     return {

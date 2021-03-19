@@ -19,13 +19,15 @@
 
 <script>
 export default {
-  asyncData(context) {
-    context.store.dispatch("setPost", context.params.id);
-  },
   computed: {
     loadedPost() {
-      return this.$store.getters.loadedPost;
+      this.$store.dispatch("setPost", this.$route.params.id).then(() => {
+        return this.$store.getters.loadedPost;
+      });
     },
+  },
+  head: {
+    title: "A Blog Post",
   },
 };
 </script>
